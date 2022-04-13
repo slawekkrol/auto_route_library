@@ -325,9 +325,10 @@ class _IndexedStackBuilderState extends State<_IndexedStackBuilder> {
       children: List.generate(
         widget.stack.length,
         (index) {
-          return _initializedPagesTracker[index] == true
-              ? widget.itemBuilder(context, index)
-              : _dummyWidget;
+          return Visibility(visible: widget.activeIndex == index,
+            child: _initializedPagesTracker[index] == true
+                  ? widget.itemBuilder(context, index)
+                  : _dummyWidget);
         },
       ),
     );
